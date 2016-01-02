@@ -1,6 +1,5 @@
 module Refies
   module PickableObjects
-
     refine Object do
 
       def pick *picks
