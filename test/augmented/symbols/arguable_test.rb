@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/symbols/arguable'
 
-require_relative '../../lib/refies/arguable_symbols'
-
-describe Refies::ArguableSymbols do
-  using Refies::ArguableSymbols
+describe Augmented::Symbols::Arguable do
+  using Augmented::Symbols::Arguable
 
   describe '#with' do
 

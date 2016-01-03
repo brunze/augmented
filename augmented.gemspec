@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'refies/version'
+require 'augmented/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "refies"
-  spec.version       = Refies::VERSION
+  spec.name          = "augmented"
+  spec.version       = Augmented::VERSION
   spec.authors       = ["bruno"]
   spec.email         = ["bruno@brunze.com"]
   spec.summary       = %q{Useful extra methods for some Ruby core types.}
   spec.description   = %q{Adds a few useful extra methods to some of Ruby's core types, available as refinements.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/brunze/augmented"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

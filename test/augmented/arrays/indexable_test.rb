@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/arrays/indexable'
 
-require_relative '../../lib/refies/indexable_arrays'
-
-describe Refies::IndexableArrays do
-  using Refies::IndexableArrays
+describe Augmented::Arrays::Indexable do
+  using Augmented::Arrays::Indexable
 
   describe '#index_by' do
 

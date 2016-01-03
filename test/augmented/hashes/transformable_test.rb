@@ -1,10 +1,9 @@
 require 'minitest/autorun'
+require 'augmented/hashes/transformable'
 require 'ostruct'
 
-require_relative '../../lib/refies/transformable_hashes'
-
-describe Refies::TransformableHashes do
-  using Refies::TransformableHashes
+describe Augmented::Hashes::Transformable do
+  using Augmented::Hashes::Transformable
 
   describe '#transform(!)' do
 

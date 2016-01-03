@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/procs/chainable'
 
-require_relative '../../lib/refies/chainable_procs'
-
-describe Refies::ChainableProcs do
-  using Refies::ChainableProcs
+describe Augmented::Procs::Chainable do
+  using Augmented::Procs::Chainable
 
   describe '#|' do
 

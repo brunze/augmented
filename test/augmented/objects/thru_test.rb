@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/objects/thru'
 
-require_relative '../../lib/refies/thru_objects'
-
-describe Refies::ThruObjects do
-  using Refies::ThruObjects
+describe Augmented::Objects::Thru do
+  using Augmented::Objects::Thru
 
   describe '#thru' do
 

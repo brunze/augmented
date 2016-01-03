@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/symbols/comparing'
 
-require_relative '../../lib/refies/comparing_symbols'
-
-describe Refies::ComparingSymbols do
-  using Refies::ComparingSymbols
+describe Augmented::Symbols::Comparing do
+  using Augmented::Symbols::Comparing
 
   let(:dummy) { Struct.new :lorem_ipsum }
 

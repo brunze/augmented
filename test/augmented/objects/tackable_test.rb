@@ -1,9 +1,8 @@
 require 'minitest/autorun'
+require 'augmented/objects/tackable'
 
-require_relative '../../lib/refies/tackable_objects'
-
-describe Refies::TackableObjects do
-  using Refies::TackableObjects
+describe Augmented::Objects::Tackable do
+  using Augmented::Objects::Tackable
 
   describe '#tack' do
 

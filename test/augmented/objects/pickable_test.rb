@@ -1,10 +1,9 @@
 require 'minitest/autorun'
+require 'augmented/objects/pickable'
 require 'ostruct'
 
-require_relative '../../lib/refies/pickable_objects'
-
-describe Refies::PickableObjects do
-  using Refies::PickableObjects
+describe Augmented::Objects::Pickable do
+  using Augmented::Objects::Pickable
 
   describe '#pick' do
 

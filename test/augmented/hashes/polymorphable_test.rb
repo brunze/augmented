@@ -1,10 +1,9 @@
 require 'minitest/autorun'
+require 'augmented/hashes/polymorphable'
 require 'ostruct'
 
-require_relative '../../lib/refies/polymorphable_hashes'
-
-describe Refies::PolymorphableHashes do
-  using Refies::PolymorphableHashes
+describe Augmented::Hashes::Polymorphable do
+  using Augmented::Hashes::Polymorphable
 
   describe '#polymorph' do
 
