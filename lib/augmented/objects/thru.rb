@@ -5,7 +5,7 @@ module Augmented
 
         # as seen on lodash: https://lodash.com/docs#thru
         def thru &function
-          function.call self
+          (function || :itself.to_proc).call self
         end
 
       end

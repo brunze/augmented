@@ -12,6 +12,11 @@ describe Augmented::Objects::Thru do
       5.thru(&plus_10).must_equal 15
     end
 
+    it '' do
+      obj = Object.new
+      obj.thru.object_id.must_equal obj.object_id
+    end
+
   end
 
 end
