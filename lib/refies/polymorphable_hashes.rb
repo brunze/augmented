@@ -3,7 +3,9 @@ module Refies
     refine Hash do
 
       def polymorph type_attribute_name = :type
-        type = self[type_attribute_name] || self[type_attribute_name.to_s] || type_attribute_name
+        type = (type_attribute_name if Class === type_attribute_name) ||
+               self[type_attribute_name] ||
+               self[type_attribute_name.to_s]
 
         raise ArgumentError, 'missing the type required for polymorph' if type.to_s.empty?
 

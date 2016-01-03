@@ -36,6 +36,11 @@ describe Refies::PolymorphableHashes do
 
     end
 
+    it 'raises an error if it cannot find a type class' do
+      proc{ {}.polymorph }.must_raise ArgumentError
+      proc{ { type: nil }.polymorph }.must_raise ArgumentError
+    end
+
   end
 
 end
