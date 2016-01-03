@@ -5,7 +5,7 @@ module Refies
       def pick *picks
         ensure_array = -> thing { thing.kind_of?(Array) ? thing : Array[thing] }
 
-        if self.kind_of? Enumerable
+        if self.respond_to? :each
           self.map{ |thing| thing.pick *picks }
         else
           picks.each_with_object({}) do |pick, result|

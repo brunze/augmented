@@ -5,9 +5,9 @@ module Refies
     refine Hash do
 
       def transform transforms
-        raise ArgumentError, 'transformations must be specified as an Hash' unless transforms.kind_of? Hash
+        Helpers.validate! transforms
 
-        transforms.each_with_object({}) do |(key, procable), new_hash|
+        transforms.each_pair.with_object({}) do |(key, procable), new_hash|
           value = self[key]
 
           if procable.kind_of?(Hash) && value.kind_of?(Hash)
@@ -21,9 +21,9 @@ module Refies
       end
 
       def transform! transforms
-        raise ArgumentError, 'transformations must be specified as an Hash' unless transforms.kind_of? Hash
+        Helpers.validate! transforms
 
-        transforms.each do |key, procable|
+        transforms.each_pair do |key, procable|
           value = self[key]
 
           if procable.kind_of?(Hash) && value.kind_of?(Hash)
@@ -49,6 +49,12 @@ module Refies
           thing.map(&:to_proc).reduce{ |chain, proc| chain | proc }
         else
           thing.to_proc
+        end
+      end
+
+      def self.validate! transforms
+        unless transforms.respond_to? :each_pair
+          raise ArgumentError, 'transformations must be specified in a map-like collection (must have `each_pair` enumerator)'
         end
       end
 
