@@ -11,6 +11,8 @@ module Augmented
 
             self.define_singleton_method name, function
           end
+
+          self
         end
 
       end

@@ -15,6 +15,11 @@ describe Augmented::Objects::Tackable do
       obj.ipsum.object_id.must_equal obj.object_id
     end
 
+    it 'returns self' do
+      obj = Object.new
+      obj.tack.object_id.must_equal obj.object_id
+    end
+
   end
 
 end
