@@ -27,18 +27,19 @@ using Augmented
 You can load all refinements for just one type:
 
 ```ruby
-using Augmented::Objects
+using Augmented::Enumerators
 using Augmented::Hashes
+using Augmented::Objects
+using Augmented::Procs
 using Augmented::Symbols
-# etc.
 ```
 
 Or you can load just the methods you need:
 
 ```ruby
 using Augmented::Objects::Pickable
-using Augmented::Symbols::Arguable
 using Augmented::Procs::Chainable
+using Augmented::Symbols::Arguable
 # etc.
 ```
 
@@ -49,6 +50,8 @@ using Augmented::Procs::Chainable
 Builds an index of all elements of an enumerator according to the given criterion.
 
 ```ruby
+using Augmented::Enumerators::Indexing
+
 ['a', 'bb', 'ccccc'].to_enum.index_by(&:length)
 # {1=>"a", 2=>"bb", 5=>"ccccc"}
 ```
@@ -58,6 +61,8 @@ Builds an index of all elements of an enumerator according to the given criterio
 Creates an object from an Hash.
 
 ```ruby
+using Augmented::Hashes::Polymorphable
+
 class Sheep
   def initialize attributes
     @sound = attributes[:sound]
@@ -77,6 +82,8 @@ end
 Recursively applies functions to a tree of hashes.
 
 ```ruby
+using Augmented::Hashes::Transformable
+
 tree = { lorem: 'ipsum', dolor: [ { sit: 10}, { sit: 20 } ] }
 triple =  -> i { i * 3 }
 
@@ -89,6 +96,8 @@ tree.transform({ lorem: :upcase, dolor: { sit: triple } })
 Calls a bunch of methods on an object and collects the results.
 
 ```ruby
+using Augmented::Objects::Pickable
+
 class MyThing
   def lorem; 'hello'; end
   def ipsum; 'cruel'; end
@@ -104,6 +113,8 @@ MyThing.new.pick :lorem, :dolor
 Appends a bunch of singleton methods to an object.
 
 ```ruby
+using Augmented::Objects::Tackable
+
 Object.new.tack(id: 11, greet: -> { puts "hello I'm #{id}" }).greet
 # hello I'm 11
 ```
@@ -113,6 +124,8 @@ Object.new.tack(id: 11, greet: -> { puts "hello I'm #{id}" }).greet
 Applies a function to an object and returns the result.
 
 ```ruby
+using Augmented::Objects::Thru
+
 filter_words = -> s { s.gsub(/bad/, '').squeeze(' ').strip }
 
 'BAD WORDS, BAD WORDS'.downcase.thru(&filter_words).capitalize
@@ -124,6 +137,8 @@ filter_words = -> s { s.gsub(/bad/, '').squeeze(' ').strip }
 Chains several procs together so they execute from left to right.
 
 ```ruby
+using Augmented::Procs::Chainable
+
 sub_two = -> i { i - 2 }
 triple = -> i { i * 3 }
 add_twenty = -> i { i + 20 }
@@ -137,6 +152,8 @@ add_twenty = -> i { i + 20 }
 Like [`Symbol#to_proc`](http://ruby-doc.org/core-2.3.0/Symbol.html#method-i-to_proc) but allows you to pass some arguments along.
 
 ```ruby
+using Augmented::Symbols::Arguable
+
 class Eleven
   def add_many *others
     11 + others.reduce(0, :+)
@@ -152,6 +169,8 @@ end
 Creates functions that compare an object's attribute.
 
 ```ruby
+using Augmented::Symbols::Comparing
+
 class User
   def initialize name
     @name = name
