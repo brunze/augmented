@@ -1,6 +1,8 @@
 # Augmented
 
-TODO: Write a gem description
+`Augmented` is a library with some core-type utility methods that I frequently find myself copying across projects. It uses refinements instead of class modification for maximum control and an easy sleep at night. 
+
+Many of the methods in `Augmented` facilitate a more functional style of programming and cover a few tiny gaps in Ruby's solid functional support.
 
 ## Installation
 
@@ -31,7 +33,7 @@ using Augmented::Symbols
 # etc.
 ```
 
-Or you can load just the method you need:
+Or you can load just the methods you need:
 
 ```ruby
 using Augmented::Objects::Pickable
@@ -165,8 +167,4 @@ users.find &(:name.eq 'Marianne')
 
 ## Contributing
 
-1. Fork it ( https://github.com/brunze/augmented/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Do you have a method you would like to see added to this library? Perhaps something you keep copying from project to project but always found too small to bother with a gem? Feel free to submit a ticket/pull request with your idea.
