@@ -1,7 +1,7 @@
 module Augmented
-  module Arrays
-    module Indexable
-      refine Array do
+  module Enumerators
+    module Indexing
+      refine Enumerator do
 
         def index_by &criterion
           Hash[ self.map(&criterion).zip(self) ]

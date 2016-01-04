@@ -27,7 +27,7 @@ You can load all refinements for just one type:
 ```ruby
 using Augmented::Objects
 using Augmented::Hashes
-using Augmented::Arrays
+using Augmented::Symbols
 # etc.
 ```
 
@@ -42,12 +42,12 @@ using Augmented::Procs::Chainable
 
 ## Quick Examples
 
-##### `Array#index_by`
+##### `Enumerator#index_by`
 
-Builds an index of all elements of an array according to the given criterion.
+Builds an index of all elements of an enumerator according to the given criterion.
 
 ```ruby
-['a', 'bb', 'ccccc'].index_by(&:length)
+['a', 'bb', 'ccccc'].to_enum.index_by(&:length)
 # {1=>"a", 2=>"bb", 5=>"ccccc"}
 ```
 
