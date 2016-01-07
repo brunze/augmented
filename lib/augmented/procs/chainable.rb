@@ -4,7 +4,7 @@ module Augmented
       refine Proc do
 
         def | other
-          -> (*args) { other.to_proc.call self.call(*args) }
+          -> *args { other.to_proc.call self.call(*args) }
         end
 
       end

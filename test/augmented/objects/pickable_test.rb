@@ -7,7 +7,7 @@ describe Augmented::Objects::Pickable do
 
   describe '#pick' do
 
-    it 'returns an hash with the results of invoking the list of picks in the target' do
+    it 'returns a hash with the results of invoking the list of picks in the target' do
       target = OpenStruct.new aaa: 111, bbb: 222, ccc: 333
 
       target.pick(:aaa, :ccc).must_equal({ aaa: 111, ccc: 333 })

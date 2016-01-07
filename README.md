@@ -2,7 +2,7 @@
 
 `Augmented` is a library with some core-type utility methods that I frequently find myself copying across projects. It uses refinements instead of class modification for maximum control and an easy sleep at night. 
 
-Many of the methods in `Augmented` facilitate a more functional style of programming and cover a few tiny gaps in Ruby's solid functional support.
+Many of the methods in `Augmented` facilitate a more functional style of programming and cover a few tiny gaps in Ruby's solid functional support. See more thoughts on this [blog post](http://blog.brunze.com/2015/using-ruby-refinements-fun-flow/).
 
 ## Installation
 
@@ -58,7 +58,7 @@ using Augmented::Enumerators::Indexing
 
 ##### `Hash#polymorph`
 
-Creates an object from an Hash.
+Creates an object from a Hash.
 
 ```ruby
 using Augmented::Hashes::Polymorphable
