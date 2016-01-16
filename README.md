@@ -56,6 +56,28 @@ using Augmented::Enumerators::Indexing
 # {1=>"a", 2=>"bb", 5=>"ccccc"}
 ```
 
+##### `Hash#map_values`
+
+Returns a new hash with the same keys but transformed values.
+
+```ruby
+using Augmented::Hashes::Mappable
+
+{ aa: 11, bb: 22 }.map_values{ |i| i * 3 }
+# {:aa=>33, :bb=>66}
+```
+
+##### `Hash#map_keys`
+
+Returns a new hash with the same values but transformed keys.
+
+```ruby
+using Augmented::Hashes::Mappable
+
+{ aa: 11, bb: 22 }.map_keys{ |k| k.to_s[0] }
+# {"a"=>11, "b"=>22}
+```
+
 ##### `Hash#polymorph`
 
 Creates an object from a Hash.
