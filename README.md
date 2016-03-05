@@ -113,6 +113,17 @@ tree.transform({ lorem: :upcase, dolor: { sit: triple } })
 # {:lorem=>"IPSUM", :dolor=>[{:sit=>30}, {:sit=>60}]}
 ```
 
+##### `Object#if`, `Object#else`
+
+Allows you to conditionally return an object, increasing readability in some situations.
+
+```ruby
+using Augmented::Objects::Iffy
+
+Person.new.eat toast.if(toast.buttered?).else(muffin)
+Person.new.eat toast.if(&:buttered?).else(muffin)
+```
+
 ##### `Object#pick`
 
 Calls a bunch of methods on an object and collects the results.
