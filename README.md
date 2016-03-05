@@ -141,6 +141,17 @@ Object.new.tack(id: 11, greet: -> { puts "hello I'm #{id}" }).greet
 # hello I'm 11
 ```
 
+##### `Object#tap_if`, `Object#tap_unless`
+
+Like [`tap`](http://ruby-doc.org/core-2.2.3/Object.html#method-i-tap) but only executes the block according to the condition.
+
+```ruby
+using Augmented::Objects::Tappable
+
+toast.tap_if(toast.warm?){ |toast| toast.butter }.eat
+toast.tap_if(:warm?.to_proc){ |toast| toast.butter }.eat
+```
+
 ##### `Object#thru`
 
 Applies a function to an object and returns the result.
