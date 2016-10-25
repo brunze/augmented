@@ -1,8 +1,9 @@
 # Augmented
 
-`Augmented` is a library with some core-type utility methods that I frequently find myself copying across projects. It uses refinements instead of class modification for maximum control and an easy sleep at night. 
+`Augmented` is a library with some core-type utility methods that I frequently find myself copying across projects. It uses refinements instead of class modification for maximum control and an easy sleep at night.
 
 Many of the methods in `Augmented` facilitate a more functional style of programming and cover a few tiny gaps in Ruby's solid functional support. See more thoughts on this [blog post](http://blog.brunze.com/2015/using-ruby-refinements-fun-flow/).
+
 
 ## Installation
 
@@ -15,6 +16,7 @@ gem 'augmented'
 Or:
 
     $ gem install augmented
+
 
 ## Usage
 
@@ -29,6 +31,7 @@ You can load all refinements for just one type:
 ```ruby
 using Augmented::Enumerators
 using Augmented::Hashes
+using Augmented::Modules
 using Augmented::Objects
 using Augmented::Procs
 using Augmented::Symbols
@@ -43,7 +46,10 @@ using Augmented::Symbols::Arguable
 # etc.
 ```
 
+
 ## Quick Examples
+
+#### `Augmented::Enumerators`
 
 ##### `Enumerator#index_by`
 
@@ -55,6 +61,9 @@ using Augmented::Enumerators::Indexing
 ['a', 'bb', 'ccccc'].to_enum.index_by(&:length)
 # {1=>"a", 2=>"bb", 5=>"ccccc"}
 ```
+
+
+#### `Augmented::Hashes`
 
 ##### `Hash#map_values`
 
@@ -112,6 +121,36 @@ triple =  -> i { i * 3 }
 tree.transform({ lorem: :upcase, dolor: { sit: triple } })
 # {:lorem=>"IPSUM", :dolor=>[{:sit=>30}, {:sit=>60}]}
 ```
+
+
+#### `Augmented::Modules`
+
+##### `Module#refined`
+
+Makes it less verbose to create small refinements.
+
+```ruby
+using Augmented::Hashes::Transformable
+
+class TextPage
+  using refined String,
+    as_phrase: -> { self.strip.capitalize.gsub /\.?\z/, '.' },
+    fill:      -> filler { (filler * self.length)[0..length] }
+
+  # ...
+
+  def text
+    @strings.map(&:as_phrase).join ' '
+  end
+
+  def obscured_text
+    text.fill '?'
+  end
+end
+```
+
+
+#### `Augmented::Objects`
 
 ##### `Object#if`, `Object#else`
 
@@ -176,6 +215,9 @@ filter_words = -> s { s.gsub(/bad/, '').squeeze(' ').strip }
 # Words, words
 ```
 
+
+#### `Augmented::Procs`
+
 ##### `Proc#|`
 
 Chains several procs together so they execute from left to right.
@@ -190,6 +232,9 @@ add_twenty = -> i { i + 20 }
 (sub_two | triple | add_twenty)[5]
 # 29
 ```
+
+
+#### `Augmented::Symbols`
 
 ##### `Symbol#with`
 
@@ -227,6 +272,7 @@ users = [ User.new('Marianne'), User.new('Jeremy') ]
 users.find &(:name.eq 'Marianne')
 # <User:0x... name='Marianne'>
 ```
+
 
 ## Contributing
 
