@@ -202,9 +202,9 @@ toast.tap_if(toast.warm?){ |toast| toast.butter }.eat
 toast.tap_if(:warm?.to_proc){ |toast| toast.butter }.eat
 ```
 
-##### `Object#thru`
+##### `Object#thru`, `Object#thru_if`, `Object#thru_unless`
 
-Applies a function to an object and returns the result.
+Applies a function to an object and returns the result. `Object#thru_if` and `Object#thru_unless` do so depending on the condition supplied (if the condition fails, the object is returned untouched).
 
 ```ruby
 using Augmented::Objects::Thru
@@ -212,7 +212,14 @@ using Augmented::Objects::Thru
 filter_words = -> s { s.gsub(/bad/, '').squeeze(' ').strip }
 
 'BAD WORDS, BAD WORDS'.downcase.thru(&filter_words).capitalize
-# Words, words
+# "Words, words"
+
+config.censor = true
+'BAD WORDS, BAD WORDS'.downcase.thru_if(config.censor?, &filter_words).capitalize
+# "Words, words"
+
+''.downcase.thru_unless(:empty?.to_proc, &filter_words).capitalize
+# ""
 ```
 
 
