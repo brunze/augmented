@@ -26,6 +26,28 @@ describe Augmented::Objects::Iffy do
 
   end
 
+  describe '#unless' do
+
+    it 'returns the object if the condition evaluates to falsy' do
+      subject = 'abc'
+      condition = -> subj { subj.length == 0 }
+
+      subject.unless(false).must_be_same_as subject
+      subject.unless(nil).must_be_same_as subject
+      subject.unless(&condition).must_be_same_as subject
+    end
+
+    it 'returns nil if the condition evaluates to truish' do
+      subject = 'abc'
+      condition = -> subj { subj.length == 3 }
+
+      subject.unless(true).must_be_same_as nil
+      subject.unless(Object.new).must_be_same_as nil
+      subject.unless(&condition).must_be_same_as nil
+    end
+
+  end
+
   describe '#else' do
 
     it 'returns the alternative if the object is falsy' do

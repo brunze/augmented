@@ -152,15 +152,18 @@ end
 
 #### `Augmented::Objects`
 
-##### `Object#if`, `Object#else`
+##### `Object#if`, `Object#unless`, `Object#else`
 
-Allows you to conditionally return an object, increasing readability in some situations.
+Allows you to conditionally return an object, allowing you to be more concise in some situations.
 
 ```ruby
 using Augmented::Objects::Iffy
 
 Person.new.eat toast.if(toast.buttered?).else(muffin)
 Person.new.eat toast.if(&:buttered?).else(muffin)
+
+Person.new.eat toast.unless(toast.soggy?).else(muffin)
+Person.new.eat toast.unless(&:soggy?).else(muffin)
 ```
 
 ##### `Object#pick`

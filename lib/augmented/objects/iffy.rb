@@ -7,6 +7,10 @@ module Augmented
           self if (block_given? ? yield(self) : condition)
         end
 
+        def unless condition = self
+          self unless (block_given? ? yield(self) : condition)
+        end
+
         def else *_
           self
         end
