@@ -29,12 +29,14 @@ using Augmented
 You can load all refinements for just one type:
 
 ```ruby
+using Augmented::Arrays
 using Augmented::Enumerators
 using Augmented::Hashes
 using Augmented::Modules
 using Augmented::Objects
 using Augmented::Procs
 using Augmented::Symbols
+# etc.
 ```
 
 Or you can load just the methods you need:
@@ -48,6 +50,23 @@ using Augmented::Symbols::Arguable
 
 
 ## Quick Examples
+
+#### `Augmented::Arrays`
+
+##### `Array#tie`
+
+Weaves an object between the elements of an array. Like `join` but without flattening the array into a string.
+
+```ruby
+using Augmented::Arrays::Tieable
+
+[1, 2, 3].tie :hello
+# [1, :hello, 2, :hello, 3]
+
+[1, 5, 12].tie{ |a, b| a + b }
+# [1, 6, 5, 17, 12]
+```
+
 
 #### `Augmented::Enumerators`
 
@@ -96,16 +115,16 @@ using Augmented::Hashes::Polymorphable
 
 class Sheep
   def initialize attributes
-    @sound = attributes[:sound]
+    @speak = attributes[:speak]
   end
 
   def speak
-    puts @sound
+    puts @speak
   end
 end
 
-{ type: 'Sheep', sound: 'meeehh' }.polymorph.speak
-# meeehh
+{ type: 'Sheep', speak: 'baaaah' }.polymorph.speak
+# baaaah
 ```
 
 ##### `Hash#transform`, `Hash#transform!`
