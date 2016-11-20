@@ -262,6 +262,19 @@ add_twenty = -> i { i + 20 }
 # 29
 ```
 
+##### `Proc#rescues`
+
+Wraps a `Proc` to rescue it from certain exceptions while returning a given value.
+
+```ruby
+using Augmented::Procs::Rescuable
+
+integerify = proc{ |x| Integer(x) }.rescues ArgumentError, 42
+
+['1', '2', 'abc', '4'].map &integerify
+# [1, 2, 42, 4]
+```
+
 
 #### `Augmented::Symbols`
 
