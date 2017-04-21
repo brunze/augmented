@@ -4,6 +4,6 @@ require 'augmented/procs/rescuable'
 module Augmented
   module Procs
     include Chainable
-    include Recuable
+    include Rescuable
   end
 end
