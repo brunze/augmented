@@ -9,7 +9,7 @@ describe Augmented::Modules::Refined do
     before do
       class TesterClass
         using refined String,
-          as_phrase: -> { self.capitalize.gsub /\.?\z/, '.' },
+          as_phrase: -> { self.capitalize.gsub(/\.?\z/, '.') },
           fill:      -> filler { (filler * self.length)[0..length] }
 
         def do_test

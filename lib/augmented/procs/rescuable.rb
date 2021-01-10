@@ -1,9 +1,9 @@
 module Augmented
   module Procs
     module Rescuable
-      refine Proc do
+      NOT_PROVIDED = Object.new
 
-        NOT_PROVIDED = Object.new
+      refine Proc do
 
         def rescues exception_class, return_value = NOT_PROVIDED, &block
           raise ArgumentError, 'must provide a return value or block' if return_value == NOT_PROVIDED && !block_given?
@@ -12,7 +12,7 @@ module Augmented
 
           Proc.new do |*args|
             begin
-              original.call *args
+              original.call(*args)
             rescue exception_class => exception
               block ? block.call(exception) : return_value
             end
