@@ -25,11 +25,11 @@ describe Augmented::Objects::Tappable do
 
       subject.tap_if(false) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
 
       subject.tap_if(nil) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
     end
 
     it 'executes block if condition evaluates to truish' do
@@ -55,11 +55,11 @@ describe Augmented::Objects::Tappable do
 
       subject.tap_if(condition_1) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
 
       subject.tap_if(condition_2) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
     end
 
     it 'always returns the object' do
@@ -92,11 +92,11 @@ describe Augmented::Objects::Tappable do
 
       subject.tap_unless(true) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
 
       subject.tap_unless(Object.new) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
     end
 
     it 'executes block if condition evaluates to falsy' do
@@ -122,11 +122,11 @@ describe Augmented::Objects::Tappable do
 
       subject.tap_unless(condition_1) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
 
       subject.tap_unless(condition_2) { |subj| test = subj.upcase }
 
-      test.must_equal nil
+      test.must_be_nil
     end
 
     it 'always returns the object' do
