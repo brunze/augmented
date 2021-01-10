@@ -16,15 +16,15 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `==`' do
       comparator = :lorem_ipsum.eq
 
-      comparator.call(thing_A, thing_B).must_equal true
-      comparator.call(thing_A, thing_C).must_equal false
+      assert_equal comparator.call(thing_A, thing_B), true
+      assert_equal comparator.call(thing_A, thing_C), false
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `==`' do
       comparator = :lorem_ipsum.eq(123)
 
-      comparator.call(thing_A).must_equal true
-      comparator.call(thing_C).must_equal false
+      assert_equal comparator.call(thing_A), true
+      assert_equal comparator.call(thing_C), false
     end
 
   end
@@ -34,15 +34,15 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `!=`' do
       comparator = :lorem_ipsum.neq
 
-      comparator.call(thing_A, thing_B).must_equal false
-      comparator.call(thing_A, thing_C).must_equal true
+      assert_equal comparator.call(thing_A, thing_B), false
+      assert_equal comparator.call(thing_A, thing_C), true
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `!=`' do
       comparator = :lorem_ipsum.neq(123)
 
-      comparator.call(thing_A).must_equal false
-      comparator.call(thing_C).must_equal true
+      assert_equal comparator.call(thing_A), false
+      assert_equal comparator.call(thing_C), true
     end
 
   end
@@ -52,17 +52,17 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `<`' do
       comparator = :lorem_ipsum.lt
 
-      comparator.call(thing_A, thing_B).must_equal false
-      comparator.call(thing_A, thing_C).must_equal true
-      comparator.call(thing_C, thing_B).must_equal false
+      assert_equal comparator.call(thing_A, thing_B), false
+      assert_equal comparator.call(thing_A, thing_C), true
+      assert_equal comparator.call(thing_C, thing_B), false
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `<`' do
       comparator = :lorem_ipsum.lt(123)
 
-      comparator.call(thing_A).must_equal false
-      comparator.call(thing_C).must_equal false
-      comparator.call(thing_D).must_equal true
+      assert_equal comparator.call(thing_A), false
+      assert_equal comparator.call(thing_C), false
+      assert_equal comparator.call(thing_D), true
     end
 
   end
@@ -72,17 +72,17 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `<=`' do
       comparator = :lorem_ipsum.lte
 
-      comparator.call(thing_A, thing_B).must_equal true
-      comparator.call(thing_A, thing_C).must_equal true
-      comparator.call(thing_C, thing_B).must_equal false
+      assert_equal comparator.call(thing_A, thing_B), true
+      assert_equal comparator.call(thing_A, thing_C), true
+      assert_equal comparator.call(thing_C, thing_B), false
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `<=`' do
       comparator = :lorem_ipsum.lte(123)
 
-      comparator.call(thing_A).must_equal true
-      comparator.call(thing_C).must_equal false
-      comparator.call(thing_D).must_equal true
+      assert_equal comparator.call(thing_A), true
+      assert_equal comparator.call(thing_C), false
+      assert_equal comparator.call(thing_D), true
     end
 
   end
@@ -92,17 +92,17 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `>`' do
       comparator = :lorem_ipsum.gt
 
-      comparator.call(thing_A, thing_B).must_equal false
-      comparator.call(thing_A, thing_C).must_equal false
-      comparator.call(thing_C, thing_B).must_equal true
+      assert_equal comparator.call(thing_A, thing_B), false
+      assert_equal comparator.call(thing_A, thing_C), false
+      assert_equal comparator.call(thing_C, thing_B), true
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `>`' do
       comparator = :lorem_ipsum.gt(123)
 
-      comparator.call(thing_A).must_equal false
-      comparator.call(thing_C).must_equal true
-      comparator.call(thing_D).must_equal false
+      assert_equal comparator.call(thing_A), false
+      assert_equal comparator.call(thing_C), true
+      assert_equal comparator.call(thing_D), false
     end
 
   end
@@ -112,17 +112,17 @@ describe Augmented::Symbols::Comparing do
     it 'returns a function that sends <symbol> to two objects and compares the results with `>=`' do
       comparator = :lorem_ipsum.gte
 
-      comparator.call(thing_A, thing_B).must_equal true
-      comparator.call(thing_A, thing_C).must_equal false
-      comparator.call(thing_C, thing_B).must_equal true
+      assert_equal comparator.call(thing_A, thing_B), true
+      assert_equal comparator.call(thing_A, thing_C), false
+      assert_equal comparator.call(thing_C, thing_B), true
     end
 
     it 'if you give it a value, it returns a function that sends <symbol> to an object and compares the result to a given value using `>=`' do
       comparator = :lorem_ipsum.gte(123)
 
-      comparator.call(thing_A).must_equal true
-      comparator.call(thing_C).must_equal true
-      comparator.call(thing_D).must_equal false
+      assert_equal comparator.call(thing_A), true
+      assert_equal comparator.call(thing_C), true
+      assert_equal comparator.call(thing_D), false
     end
 
   end

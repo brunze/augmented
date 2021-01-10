@@ -12,15 +12,15 @@ describe Augmented::Arrays::Tieable do
         object = Object.new
         weaved = %w(a b c).tie object
 
-        weaved.must_equal ['a', object, 'b', object, 'c']
+        assert_equal weaved, ['a', object, 'b', object, 'c']
       end
 
       it 'returns an empty array if the original array is empty' do
-        [].tie(1).must_equal []
+        assert_equal [].tie(1), []
       end
 
       it 'returns the original array if it has only one element' do
-        [42].tie(1).must_equal [42]
+        assert_equal [42].tie(1), [42]
       end
 
     end
@@ -31,34 +31,34 @@ describe Augmented::Arrays::Tieable do
         values = [10 ,20].each
         weaved = %w(a b c).tie{ values.next }
 
-        weaved.must_equal ['a', 10, 'b', 20, 'c']
+        assert_equal weaved, ['a', 10, 'b', 20, 'c']
       end
 
       it 'passes both neighbour values as arguments to the supplied block' do
         weaved = [1, 5, 12].tie{ |a, b| a + b }
 
-        weaved.must_equal [1, 6, 5, 17, 12]
+        assert_equal weaved, [1, 6, 5, 17, 12]
       end
 
       it 'will weave nils if the block does not return anything else' do
         weaved = [1, 2, 3].tie{}
 
-        weaved.must_equal [1, nil, 2, nil, 3]
+        assert_equal weaved, [1, nil, 2, nil, 3]
       end
 
       it 'returns an empty array if the original arrays is empty' do
-        [].tie{ 1 }.must_equal []
+        assert_equal [].tie{ 1 }, []
       end
 
       it 'returns the original array if it has only one element' do
-        [42].tie{ 1 }.must_equal [42]
+        assert_equal [42].tie{ 1 }, [42]
       end
 
     end
 
     it 'raises an ArgumentError if not passed a non-nil object or block' do
-      proc{ [].tie }.must_raise ArgumentError
-      proc{ [].tie nil }.must_raise ArgumentError
+      assert_raises(ArgumentError){ [].tie }
+      assert_raises(ArgumentError){ [].tie nil }
     end
 
   end

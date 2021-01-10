@@ -10,18 +10,18 @@ describe Augmented::Objects::Iffy do
       subject = 'abc'
       condition = -> subj { subj.length == 3 }
 
-      subject.if(true).must_be_same_as subject
-      subject.if(Object.new).must_be_same_as subject
-      subject.if(&condition).must_be_same_as subject
+      assert_same subject.if(true), subject
+      assert_same subject.if(Object.new), subject
+      assert_same subject.if(&condition), subject
     end
 
     it 'returns nil if the condition evaluates to falsy' do
       subject = 'abc'
       condition = -> subj { subj.length == 0 }
 
-      subject.if(false).must_be_same_as nil
-      subject.if(nil).must_be_same_as nil
-      subject.if(&condition).must_be_same_as nil
+      assert_nil subject.if(false)
+      assert_nil subject.if(nil)
+      assert_nil subject.if(&condition)
     end
 
   end
@@ -32,18 +32,18 @@ describe Augmented::Objects::Iffy do
       subject = 'abc'
       condition = -> subj { subj.length == 0 }
 
-      subject.unless(false).must_be_same_as subject
-      subject.unless(nil).must_be_same_as subject
-      subject.unless(&condition).must_be_same_as subject
+      assert_same subject.unless(false), subject
+      assert_same subject.unless(nil), subject
+      assert_same subject.unless(&condition), subject
     end
 
     it 'returns nil if the condition evaluates to truish' do
       subject = 'abc'
       condition = -> subj { subj.length == 3 }
 
-      subject.unless(true).must_be_same_as nil
-      subject.unless(Object.new).must_be_same_as nil
-      subject.unless(&condition).must_be_same_as nil
+      assert_nil subject.unless(true)
+      assert_nil subject.unless(Object.new)
+      assert_nil subject.unless(&condition)
     end
 
   end
@@ -53,15 +53,15 @@ describe Augmented::Objects::Iffy do
     it 'returns the alternative if the object is falsy' do
       alternative = Object.new
 
-      false.else(alternative).must_be_same_as alternative
-      nil.else(alternative).must_be_same_as alternative
+      assert_same false.else(alternative), alternative
+      assert_same nil.else(alternative), alternative
     end
 
     it 'returns the object if the object is truish' do
       subject = Object.new
 
-      true.else(123).must_be_same_as true
-      subject.else(123).must_be_same_as subject
+      assert_same true.else(123), true
+      assert_same subject.else(123), subject
     end
 
   end

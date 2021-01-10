@@ -10,34 +10,34 @@ describe Augmented::Hashes::Polymorphable do
     it 'returns an object of the class specified by the `:type` attribute, initialized with the hash itself' do
       object = { type: 'OpenStruct', speak: 'meeehh' }.polymorph
 
-      object.must_be_instance_of OpenStruct
-      object.speak.must_equal 'meeehh'
+      assert_instance_of OpenStruct, object
+      assert_equal object.speak, 'meeehh'
     end
 
     describe 'type attribute' do
 
       it 'can also be a string key in the hash' do
-        { 'type' => 'OpenStruct' }.polymorph.must_be_instance_of OpenStruct
+        assert_instance_of OpenStruct, { 'type' => 'OpenStruct' }.polymorph
       end
 
       it 'can be an arbitrary attribute in the hash' do
-        { lorem_ipsum: 'OpenStruct' }.polymorph(:lorem_ipsum).must_be_instance_of OpenStruct
-        { 'lorem_ipsum' => 'OpenStruct' }.polymorph(:lorem_ipsum).must_be_instance_of OpenStruct
+        assert_instance_of OpenStruct, { lorem_ipsum: 'OpenStruct' }.polymorph(:lorem_ipsum)
+        assert_instance_of OpenStruct, { 'lorem_ipsum' => 'OpenStruct' }.polymorph(:lorem_ipsum)
       end
 
       it 'can be a class' do
-        { type: OpenStruct }.polymorph().must_be_instance_of OpenStruct
+        assert_instance_of OpenStruct, { type: OpenStruct }.polymorph()
       end
 
       it 'can be a class passed directly to the method, ignoring the type attribute in the hash' do
-        { type: 'TotallyIgnoredClass' }.polymorph(OpenStruct).must_be_instance_of OpenStruct
+        assert_instance_of OpenStruct, { type: 'TotallyIgnoredClass' }.polymorph(OpenStruct)
       end
 
     end
 
     it 'raises an error if it cannot find a type class' do
-      proc{ {}.polymorph }.must_raise ArgumentError
-      proc{ { type: nil }.polymorph }.must_raise ArgumentError
+      assert_raises(ArgumentError){ {}.polymorph }
+      assert_raises(ArgumentError){ { type: nil }.polymorph }
     end
 
   end

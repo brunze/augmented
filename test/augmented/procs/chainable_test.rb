@@ -15,7 +15,7 @@ describe Augmented::Procs::Chainable do
 
       chain = add_one | triple | sub_two | add_twenty
 
-      chain.call(1).must_equal 24
+      assert_equal chain.call(1), 24
     end
 
   end

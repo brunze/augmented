@@ -11,13 +11,13 @@ describe Augmented::Objects::Tackable do
 
       obj.tack lorem: 123, ipsum: -> { self }
 
-      obj.lorem.must_equal 123
-      obj.ipsum.object_id.must_equal obj.object_id
+      assert_equal obj.lorem, 123
+      assert_equal obj.ipsum.object_id, obj.object_id
     end
 
     it 'returns self' do
       obj = Object.new
-      obj.tack.object_id.must_equal obj.object_id
+      assert_equal obj.tack.object_id, obj.object_id
     end
 
   end
