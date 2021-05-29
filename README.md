@@ -60,7 +60,7 @@ Weaves an object between the elements of an array. Like `join` but without flatt
 ```ruby
 using Augmented::Arrays::Tieable
 
-[1, 2, 3].tie :hello
+[1, 2, 3].tie(:hello)
 # [1, :hello, 2, :hello, 3]
 
 [1, 5, 12].tie{ |a, b| a + b }
@@ -72,13 +72,13 @@ using Augmented::Arrays::Tieable
 
 ##### `Enumerator#index_by`
 
-Builds an index of all elements of an enumerator according to the given criterion.
+Builds an index of all elements of an enumerator according to the given criterion. Last element wins.
 
 ```ruby
 using Augmented::Enumerators::Indexing
 
-['a', 'bb', 'ccccc'].to_enum.index_by(&:length)
-# {1=>"a", 2=>"bb", 5=>"ccccc"}
+['a', 'bb', 'c', 'ddddd'].to_enum.index_by(&:length)
+# {1=>"c", 2=>"bb", 5=>"ddddd"}
 ```
 
 
@@ -149,21 +149,16 @@ tree.transform({ lorem: :upcase, dolor: { sit: triple } })
 Makes it less verbose to create small refinements.
 
 ```ruby
-using Augmented::Hashes::Transformable
+using Augmented::Modules::Refined
 
 class TextPage
   using refined String,
-    as_phrase: -> { self.strip.capitalize.gsub /\.?\z/, '.' },
-    fill:      -> filler { (filler * self.length)[0..length] }
+    to_phrase: -> { self.strip.capitalize.gsub(/\.?\z/, '.') }
 
   # ...
 
   def text
-    @strings.map(&:as_phrase).join ' '
-  end
-
-  def obscured_text
-    text.fill '?'
+    @lines.map(&:to_phrase).join(' ')
   end
 end
 ```
@@ -178,11 +173,11 @@ Allows you to conditionally return an object, allowing you to be more concise in
 ```ruby
 using Augmented::Objects::Iffy
 
-Person.new.eat toast.if(toast.buttered?).else(muffin)
-Person.new.eat toast.if(&:buttered?).else(muffin)
+Person.new.eat(toast.if(toast.buttered?).else(muffin))
+Person.new.eat(toast.if(&:buttered?).else(muffin))
 
-Person.new.eat toast.unless(toast.soggy?).else(muffin)
-Person.new.eat toast.unless(&:soggy?).else(muffin)
+Person.new.eat(toast.unless(toast.soggy?).else(muffin))
+Person.new.eat(toast.unless(&:soggy?).else(muffin))
 ```
 
 ##### `Object#pick`
@@ -193,13 +188,13 @@ Calls a bunch of methods on an object and collects the results.
 using Augmented::Objects::Pickable
 
 class MyThing
-  def lorem; 'hello'; end
-  def ipsum; 'cruel'; end
-  def dolor; 'world'; end
+  def foo; 'lorem'; end
+  def bar; 'ipsum'; end
+  def baz; 'dolor'; end
 end
 
-MyThing.new.pick :lorem, :dolor
-# {:lorem=>"hello", :dolor=>"world"}
+MyThing.new.pick(:foo, :baz)
+# {:foo=>"lorem", :baz=>"dolor"}
 ```
 
 ##### `Object#tack`
@@ -209,8 +204,8 @@ Appends a bunch of singleton methods to an object.
 ```ruby
 using Augmented::Objects::Tackable
 
-Object.new.tack(id: 11, greet: -> { puts "hello I'm #{id}" }).greet
-# hello I'm 11
+Object.new.tack(name: 'Alice', greet: -> { puts "hello I'm #{name}" }).greet
+# hello I'm Alice
 ```
 
 ##### `Object#tap_if`, `Object#tap_unless`
@@ -269,9 +264,9 @@ Wraps a `Proc` to rescue it from certain exceptions while returning a given valu
 ```ruby
 using Augmented::Procs::Rescuable
 
-integerify = proc{ |x| Integer(x) }.rescues ArgumentError, 42
+integerify = proc{ |x| Integer(x) }.rescues(ArgumentError, 42)
 
-['1', '2', 'abc', '4'].map &integerify
+['1', '2', 'oops!', '4'].map(&integerify)
 # [1, 2, 42, 4]
 ```
 
@@ -311,8 +306,8 @@ end
 
 users = [ User.new('Marianne'), User.new('Jeremy') ]
 
-users.find &(:name.eq 'Marianne')
-# <User:0x... name='Marianne'>
+users.find(&:name.eq('Marianne'))
+# <User:0x... @name='Marianne'>
 ```
 
 
