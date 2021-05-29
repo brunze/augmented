@@ -4,7 +4,9 @@ module Augmented
       refine Enumerator do
 
         def index_by &criterion
-          Hash[ self.map(&criterion).zip(self) ]
+          self.each_with_object({}) do |element, index|
+            index[criterion.(element)] = element
+          end
         end
 
       end
