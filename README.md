@@ -281,12 +281,26 @@ Tests if a string is empty or made of whitespace.
 ```ruby
 using Augmented::Strings::Blank
 
-"".blank?
+''.blank?
 # true
-" ".blank?
+' '.blank?
 # true
-" hello ".blank?
+' hello '.blank?
 # false
+```
+
+
+##### `String#truncate`, `String#truncate!`
+
+Returns a prefix of a string up to a given number of characters.
+
+```ruby
+using Augmented::Strings::Truncatable
+
+'hello world'.truncate(5)
+# "hello"
+[(string = 'hello world'), string.truncate!(5)]
+# ["hello", "hello"]
 ```
 
 
