@@ -35,6 +35,7 @@ using Augmented::Hashes
 using Augmented::Modules
 using Augmented::Objects
 using Augmented::Procs
+using Augmented::Strings
 using Augmented::Symbols
 # etc.
 ```
@@ -268,6 +269,24 @@ integerify = proc{ |x| Integer(x) }.rescues(ArgumentError, 42)
 
 ['1', '2', 'oops!', '4'].map(&integerify)
 # [1, 2, 42, 4]
+```
+
+
+#### `Augmented::Strings`
+
+##### `String#blank?`
+
+Tests if a string is empty or made of whitespace.
+
+```ruby
+using Augmented::Strings::Blank
+
+"".blank?
+# true
+" ".blank?
+# true
+" hello ".blank?
+# false
 ```
 
 

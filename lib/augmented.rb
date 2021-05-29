@@ -6,6 +6,7 @@ require 'augmented/hashes'
 require 'augmented/modules'
 require 'augmented/objects'
 require 'augmented/procs'
+require 'augmented/strings'
 require 'augmented/symbols'
 
 module Augmented
@@ -15,5 +16,6 @@ module Augmented
   include Modules
   include Objects
   include Procs
+  include Strings
   include Symbols
 end
