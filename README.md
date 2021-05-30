@@ -86,6 +86,30 @@ using Augmented::Enumerators::Indexing
 
 #### `Augmented::Exceptions`
 
+##### `Exception#chain`
+
+Returns an enumerator over the exception's causal chain, starting with the exception itself.
+
+```ruby
+using Augmented::Exceptions::Chain
+
+begin
+  begin
+    begin
+      raise 'first'
+    rescue
+      raise 'second'
+    end
+  rescue
+    raise 'third'
+  end
+rescue => error
+  error.chain.map(&:message)
+end
+# ["third", "second", "first"]
+```
+
+
 ##### `Exception#details`, `Exception#details=`, `Exception#detailed`
 
 Attach a hash of details to any exception.
