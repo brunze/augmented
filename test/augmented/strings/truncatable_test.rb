@@ -15,6 +15,10 @@ describe Augmented::Strings::Truncatable do
       assert_equal 'abcdef'.truncate(10), 'abcdef'
     end
 
+    it 'returns an empty string if given a length of 0' do
+      assert_equal 'abcdef'.truncate(0), ''
+    end
+
     it 'returns an empty string if the target string is empty' do
       assert_equal ''.truncate(10), ''
     end
@@ -49,6 +53,14 @@ describe Augmented::Strings::Truncatable do
 
       assert_equal string, 'abcdef'
       assert_equal result, 'abcdef'
+    end
+
+    it 'returns an empty string if given a length of 0' do
+      string = 'abcdef'
+      result = string.truncate!(0)
+
+      assert_equal string, ''
+      assert_equal result, ''
     end
 
     it 'returns an empty string if the target string is empty' do
