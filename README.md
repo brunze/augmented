@@ -128,10 +128,10 @@ exception.details
 
 ##### `Exception#to_h`
 
-Serializes an exception into a Hash including its details and causal chain.
+Serializes an exception into a Hash including its backtrace, details and causal chain.
 
 ```ruby
-using Augmented::Exceptions::Hashable
+using Augmented::Exceptions::Serializable
 using Augmented::Exceptions::Detailed
 
 begin
@@ -147,10 +147,12 @@ end
 #   :class => "RuntimeError",
 #   :message => "second",
 #   :details => { :bar => 20 },
+#   :backtrace => [ ... ],
 #   :cause => {
 #     :class => "RuntimeError",
 #     :message => "first",
 #     :details => { :foo => 10 },
+#     :backtrace => [ ... ],
 #     :cause => nil
 #   }
 # }

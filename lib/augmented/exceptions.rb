@@ -1,11 +1,11 @@
 require 'augmented/exceptions/chain'
 require 'augmented/exceptions/detailed'
-require 'augmented/exceptions/hashable'
+require 'augmented/exceptions/serializable'
 
 module Augmented
   module Exceptions
     include Chain
     include Detailed
-    include Hashable
+    include Serializable
   end
 end

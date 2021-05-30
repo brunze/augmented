@@ -1,6 +1,6 @@
 module Augmented
   module Exceptions
-    module Hashable
+    module Serializable
       refine Exception do
         using Chain
         using Detailed
@@ -11,6 +11,7 @@ module Augmented
               class: exception.class.name,
               message: exception.message,
               details: exception.details,
+              backtrace: exception.backtrace || [],
               cause: nil,
             }
           end.reverse.reduce do |cause, exception|
