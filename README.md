@@ -31,6 +31,7 @@ You can load all refinements for just one type:
 ```ruby
 using Augmented::Arrays
 using Augmented::Enumerators
+using Augmented::Exceptions
 using Augmented::Hashes
 using Augmented::Modules
 using Augmented::Objects
@@ -80,6 +81,24 @@ using Augmented::Enumerators::Indexing
 
 ['a', 'bb', 'c', 'ddddd'].to_enum.index_by(&:length)
 # {1=>"c", 2=>"bb", 5=>"ddddd"}
+```
+
+
+#### `Augmented::Exceptions`
+
+##### `Exception#details`, `Exception#details=`, `Exception#detailed`
+
+Attach a hash of details to any exception.
+
+```ruby
+using Augmented::Exceptions::Detailed
+
+exception = RuntimeError.new('oops!').detailed(foo: 10, bar: { baz: 30 })
+exception.details
+# {:foo=>10, :bar=>{:baz=>30}}
+exception.details = { bam: 40 }
+exception.details
+# {:bam=>40}
 ```
 
 
