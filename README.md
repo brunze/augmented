@@ -126,6 +126,37 @@ exception.details
 ```
 
 
+##### `Exception#to_h`
+
+Serializes an exception into a Hash including its details and causal chain.
+
+```ruby
+using Augmented::Exceptions::Hashable
+using Augmented::Exceptions::Detailed
+
+begin
+  begin
+    raise RuntimeError.new('first').detailed(foo: 10)
+  rescue
+    raise RuntimeError.new('second').detailed(bar: 20)
+  end
+rescue => error
+  error.to_h
+end
+# {
+#   :class => "RuntimeError",
+#   :message => "second",
+#   :details => { :bar => 20 },
+#   :cause => {
+#     :class => "RuntimeError",
+#     :message => "first",
+#     :details => { :foo => 10 },
+#     :cause => nil
+#   }
+# }
+```
+
+
 #### `Augmented::Hashes`
 
 ##### `Hash#map_values`
