@@ -257,6 +257,21 @@ Person.new.eat(toast.unless(toast.soggy?).else(muffin))
 Person.new.eat(toast.unless(&:soggy?).else(muffin))
 ```
 
+##### `Object#in?`
+
+Tests if the object is included in a collection (collection must respond to `included?`).
+
+```ruby
+using Augmented::Objects::In
+
+2.in?([1, 2, 3])
+# true
+5.in?(0..2)
+# false
+'B'.in?('ABC')
+# true
+```
+
 ##### `Object#pick`
 
 Calls a bunch of methods on an object and collects the results.
