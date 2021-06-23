@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.6] - 2021-06-23
+
+- Fixed `String#blank?` not working on Ruby 2.3.
+
 ## [0.2.5] - 2021-05-30
 
 - Added `Exception#details`, `Exception#details=`, `Exception#detailed`
