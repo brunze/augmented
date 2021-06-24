@@ -381,6 +381,21 @@ using Augmented::Strings::Blank
 ```
 
 
+##### `String#squish`, `String#squish!`
+
+Replaces runs of whitespace with a single space except at the edges of the string. Can be given a custom pattern and replacement.
+
+```ruby
+using Augmented::Strings::Squish
+
+' hello   world '.squish!
+# "hello world"
+
+'---what-a-nice--kebab-'.squish(/\W+/, '_')
+# "what_a_nice_kebab"
+```
+
+
 ##### `String#truncate`, `String#truncate!`
 
 Returns a prefix of a string up to a given number of characters.
