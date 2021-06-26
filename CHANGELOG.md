@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.7] - 2021-06-26
+
 - Added `String#squish` and `String#squish!`.
 - Added `Object#in?`.
 
