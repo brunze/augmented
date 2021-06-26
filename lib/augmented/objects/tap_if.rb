@@ -1,6 +1,6 @@
 module Augmented
   module Objects
-    module Tappable
+    module TapIf
       refine Object do
 
         def tap_if condition, &block

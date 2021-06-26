@@ -3,7 +3,9 @@
 - BREAKING: updated minimum Ruby version required to 2.7.
 - BREAKING: removed `Hash#map_values` and `Hash#map_keys`.
 - BREAKING: removed `Proc#|`.
-- BREAKING: removed `Object#thru` and renamed `#thru_if`, `#thru_unless` to `#then_if`, `#then_unless`; renamed their module also.
+- BREAKING: removed `Object#thru` and renamed `#thru_if`, `#thru_unless` to `#then_if`, `#then_unless`.
+- BREAKING: renamed the `Objects::Thru` module to `Objects::ThenIf`
+- BREAKING: renamed the `Objects::Tappable` module to `Objects::TapIf`
 - BREAKING: `Exception#details=` and `Exception#details=` now enforce their argument to be a Hash.
 
 ## [0.2.7] - 2021-06-26

@@ -2,7 +2,7 @@ require 'augmented/objects/iffy'
 require 'augmented/objects/in'
 require 'augmented/objects/pickable'
 require 'augmented/objects/tackable'
-require 'augmented/objects/tappable'
+require 'augmented/objects/tap_if'
 require 'augmented/objects/then_if'
 
 module Augmented
@@ -11,7 +11,7 @@ module Augmented
     include In
     include Pickable
     include Tackable
-    include Tappable
+    include TapIf
     include ThenIf
   end
 end

@@ -1,8 +1,8 @@
 require 'minitest/autorun'
-require 'augmented/objects/tappable'
+require 'augmented/objects/tap_if'
 
-describe Augmented::Objects::Tappable do
-  using Augmented::Objects::Tappable
+describe Augmented::Objects::TapIf do
+  using Augmented::Objects::TapIf
 
   describe '#tap_if' do
 

@@ -280,10 +280,10 @@ Object.new.tack(name: 'Alice', greet: -> { puts "hello I'm #{name}" }).greet
 
 ##### `Object#tap_if`, `Object#tap_unless`
 
-Like [`tap`](http://ruby-doc.org/core-2.2.3/Object.html#method-i-tap) but only executes the block according to the condition.
+Like [`tap`](https://ruby-doc.org/core-2.7.3/Object.html#tap-method) but only executes the block according to a condition.
 
 ```ruby
-using Augmented::Objects::Tappable
+using Augmented::Objects::TapIf
 
 toast.tap_if(toast.warm?){ |toast| toast.butter }.eat
 toast.tap_if(:warm?.to_proc){ |toast| toast.butter }.eat
