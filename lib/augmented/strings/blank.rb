@@ -6,7 +6,7 @@ module Augmented
       refine String do
 
         def blank?
-          empty? || !!REGEXP.match(self)
+          empty? || REGEXP.match?(self)
         end
 
       end
