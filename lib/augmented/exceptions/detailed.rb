@@ -7,12 +7,12 @@ module Augmented
           @_details ||= {}
         end
 
-        def details= **details
-          @_details = details
+        def details= details
+          @_details = details.to_hash
         end
 
-        def detailed **details
-          self.details = details
+        def detailed details
+          self.details = details.to_hash
           self
         end
 
