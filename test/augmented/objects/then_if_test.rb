@@ -1,31 +1,16 @@
 require 'minitest/autorun'
-require 'augmented/objects/thru'
+require 'augmented/objects/then_if'
 
-describe Augmented::Objects::Thru do
-  using Augmented::Objects::Thru
+describe Augmented::Objects::ThenIf do
+  using Augmented::Objects::ThenIf
 
-  describe '#thru' do
-
-    it 'returns the result of applying the given function to the object' do
-      plus_10 = -> i { i + 10 }
-
-      assert_equal 5.thru(&plus_10), 15
-    end
-
-    it 'returns the object untouched if called without arguments' do
-      obj = Object.new
-      assert_equal obj.thru.object_id, obj.object_id
-    end
-
-  end
-
-  describe '#thru_if' do
+  describe '#then_if' do
 
     it 'applies the given function to the object if the condition is truish' do
       plus_10 = -> i { i + 10 }
 
-      assert_equal 5.thru_if(true, &plus_10), 15
-      assert_equal 5.thru_if(Object.new, &plus_10), 15
+      assert_equal 5.then_if(true, &plus_10), 15
+      assert_equal 5.then_if(Object.new, &plus_10), 15
     end
 
     it 'applies the given function to the object if the condition evaluates to truish' do
@@ -34,15 +19,15 @@ describe Augmented::Objects::Thru do
       condition_1 = -> i { i == 5 }
       condition_2 = -> i { i.to_s }
 
-      assert_equal 5.thru_if(condition_1, &plus_10), 15
-      assert_equal 5.thru_if(condition_2, &plus_10), 15
+      assert_equal 5.then_if(condition_1, &plus_10), 15
+      assert_equal 5.then_if(condition_2, &plus_10), 15
     end
 
     it 'returns the object without applying the function if the condition is falsy' do
       plus_10 = -> i { i + 10 }
 
-      assert_equal 5.thru_if(false, &plus_10), 5
-      assert_equal 5.thru_if(nil,   &plus_10), 5
+      assert_equal 5.then_if(false, &plus_10), 5
+      assert_equal 5.then_if(nil,   &plus_10), 5
     end
 
     it 'returns the object without applying the function if the condition evaluates to falsy' do
@@ -51,19 +36,19 @@ describe Augmented::Objects::Thru do
       condition_1 = -> i { i == 10 }
       condition_2 = -> i { nil }
 
-      assert_equal 5.thru_if(condition_1, &plus_10), 5
-      assert_equal 5.thru_if(condition_2, &plus_10), 5
+      assert_equal 5.then_if(condition_1, &plus_10), 5
+      assert_equal 5.then_if(condition_2, &plus_10), 5
     end
 
   end
 
-  describe '#thru_unless' do
+  describe '#then_unless' do
 
     it 'applies the given function to the object if the condition is falsy' do
       plus_10 = -> i { i + 10 }
 
-      assert_equal 5.thru_unless(false, &plus_10), 15
-      assert_equal 5.thru_unless(nil,   &plus_10), 15
+      assert_equal 5.then_unless(false, &plus_10), 15
+      assert_equal 5.then_unless(nil,   &plus_10), 15
     end
 
     it 'applies the given function to the object if the condition evaluates to falsy' do
@@ -72,15 +57,15 @@ describe Augmented::Objects::Thru do
       condition_1 = -> i { i == 10 }
       condition_2 = -> i { nil }
 
-      assert_equal 5.thru_unless(condition_1, &plus_10), 15
-      assert_equal 5.thru_unless(condition_2, &plus_10), 15
+      assert_equal 5.then_unless(condition_1, &plus_10), 15
+      assert_equal 5.then_unless(condition_2, &plus_10), 15
     end
 
     it 'returns the object without applying the function if the condition is truish' do
       plus_10 = -> i { i + 10 }
 
-      assert_equal 5.thru_unless(true, &plus_10), 5
-      assert_equal 5.thru_unless(Object.new, &plus_10), 5
+      assert_equal 5.then_unless(true, &plus_10), 5
+      assert_equal 5.then_unless(Object.new, &plus_10), 5
     end
 
     it 'returns the object without applying the function if the condition evaluates to truish' do
@@ -89,8 +74,8 @@ describe Augmented::Objects::Thru do
       condition_1 = -> i { i == 5 }
       condition_2 = -> i { i.to_s }
 
-      assert_equal 5.thru_unless(condition_1, &plus_10), 5
-      assert_equal 5.thru_unless(condition_2, &plus_10), 5
+      assert_equal 5.then_unless(condition_1, &plus_10), 5
+      assert_equal 5.then_unless(condition_2, &plus_10), 5
     end
 
   end

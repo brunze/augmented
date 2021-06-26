@@ -3,7 +3,7 @@ require 'augmented/objects/in'
 require 'augmented/objects/pickable'
 require 'augmented/objects/tackable'
 require 'augmented/objects/tappable'
-require 'augmented/objects/thru'
+require 'augmented/objects/then_if'
 
 module Augmented
   module Objects
@@ -12,6 +12,6 @@ module Augmented
     include Pickable
     include Tackable
     include Tappable
-    include Thru
+    include ThenIf
   end
 end
