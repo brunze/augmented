@@ -1,5 +1,3 @@
-require 'augmented/procs/chainable'
-
 module Augmented
   module Hashes
     module Transformable
@@ -43,11 +41,10 @@ module Augmented
 
 
       module Helpers
-        using ::Augmented::Procs::Chainable
 
         def self.make_one_proc thing
           if thing.kind_of?(Array)
-            thing.map(&:to_proc).reduce{ |chain, proc| chain | proc }
+            thing.map(&:to_proc).reduce{ |chain, proc| chain >> proc }
           else
             thing.to_proc
           end

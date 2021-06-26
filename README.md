@@ -45,8 +45,8 @@ Or you can load just the methods you need:
 
 ```ruby
 using Augmented::Objects::Pickable
-using Augmented::Procs::Chainable
-using Augmented::Symbols::Arguable
+using Augmented::Procs::Rescuable
+using Augmented::Strings::Blank
 # etc.
 ```
 
@@ -311,21 +311,6 @@ config.censor = true
 
 
 #### `Augmented::Procs`
-
-##### `Proc#|`
-
-Chains several procs together so they execute from left to right.
-
-```ruby
-using Augmented::Procs::Chainable
-
-sub_two = -> i { i - 2 }
-triple = -> i { i * 3 }
-add_twenty = -> i { i + 20 }
-
-(sub_two | triple | add_twenty)[5]
-# 29
-```
 
 ##### `Proc#rescues`
 
