@@ -6,18 +6,46 @@ describe Augmented::Objects::Tackable do
 
   describe '#tack' do
 
-    it 'attaches new methods to an object' do
-      obj = Object.new
+    it 'attaches a new singleton method to an object' do
+      subject  = Object.new
+      returned = subject.tack(forty_two: 42)
 
-      obj.tack lorem: 123, ipsum: -> { self }
+      assert_same  subject, returned
+      assert_equal subject.forty_two, 42
 
-      assert_equal obj.lorem, 123
-      assert_equal obj.ipsum.object_id, obj.object_id
+      returned = subject.tack(:double) do
+        forty_two * 2
+      end
+
+      assert_same  subject, returned
+      assert_equal subject.double, 84
+
+      returned = subject.tack(:add) do |other|
+        forty_two + other
+      end
+
+      assert_same  subject, returned
+      assert_equal subject.add(8), 50
     end
 
-    it 'returns self' do
-      obj = Object.new
-      assert_equal obj.tack.object_id, obj.object_id
+    it 'raises an error if passed a block but no valid method name' do
+      assert_raises(ArgumentError){ Object.new.tack{ "nope!" } }
+      assert_raises(ArgumentError){ Object.new.tack(nil){ "nope!" } }
+      assert_raises(ArgumentError){ Object.new.tack(42){ "nope!" } }
+    end
+
+    it 'attaches many new singleton methods to an object at once' do
+      subject = Object.new
+      returned = subject.tack(
+        forty_two: 42,
+        double: -> { forty_two * 2},
+        add: -> other { forty_two + other }
+      )
+
+      assert_equal subject.forty_two, 42
+      assert_equal subject.double, 84
+      assert_equal subject.add(8), 50
+      assert_same  subject, returned
     end
 
   end
